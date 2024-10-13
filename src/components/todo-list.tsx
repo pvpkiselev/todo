@@ -1,12 +1,17 @@
-import { useTodos } from '@/context/todo-context';
+import type { FilterTabs } from '@/models/types';
 import TodoItem from './todo-item';
+import { useFilteredTodos } from './hooks/useFilteredTodos';
 
-const TodoList: React.FC = () => {
-  const { todos } = useTodos();
+interface TodoListProps {
+  filter: FilterTabs;
+}
+
+const TodoList: React.FC<TodoListProps> = ({ filter }) => {
+  const { filteredTodos } = useFilteredTodos(filter);
 
   return (
     <div className="flex w-full flex-col">
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
     </div>
