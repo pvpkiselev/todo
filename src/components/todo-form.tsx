@@ -1,19 +1,38 @@
+import React, { useEffect, useState } from 'react';
 import { useTodos } from '@/context/todo-context';
-import React, { useState } from 'react';
+import { validateText } from '@/lib/utils';
 
 const TodoForm: React.FC = () => {
   const [text, setText] = useState('');
+  const [error, setError] = useState('');
   const { addTodo } = useTodos();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const validText = text.trim();
-    const isTextEmpty = validText === '';
-    if (isTextEmpty) return;
+    const validation = validateText(text);
+
+    if (!validation.isValid) {
+      setError(validation.message);
+      return;
+    }
 
     addTodo(text.trim());
     setText('');
+    setError('');
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
@@ -22,8 +41,10 @@ const TodoForm: React.FC = () => {
         type="text"
         placeholder="What needs to be done?"
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={handleChange}
       />
+
+      {error && <p className="text-red-500">{error}</p>}
     </form>
   );
 };
