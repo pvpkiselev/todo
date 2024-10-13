@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useId, useState } from 'react';
-import { Todo } from '@/models/types';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import type { Todo } from '@/models/types';
 
 interface TodoContextProps {
   todos: Todo[];
@@ -30,7 +31,7 @@ export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
 
   const addTodo = (text: string) => {
     const todo = {
-      id: useId(),
+      id: uuidv4(),
       text,
       completed: false,
     };
