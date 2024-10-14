@@ -13,7 +13,12 @@ interface TabTriggerProps {
 }
 
 const TabTrigger: React.FC<TabTriggerProps> = ({ label, isSelected, onClick }) => (
-  <button className={cn('px-4 py-1', { 'bg-gray-200': isSelected })} onClick={onClick}>
+  <button
+    className={cn('px-4 py-1 text-body01 hover:text-accent', {
+      'border border-accent': isSelected,
+    })}
+    onClick={onClick}
+  >
     {label}
   </button>
 );
@@ -21,7 +26,7 @@ const TabTrigger: React.FC<TabTriggerProps> = ({ label, isSelected, onClick }) =
 const Tabs: React.FC<TabsProps> = (props) => {
   const { children, className } = props;
 
-  return <div className={cn('mt-4 flex space-x-4', className || '')}>{children}</div>;
+  return <div className={cn('flex space-x-4', className || '')}>{children}</div>;
 };
 
 export { Tabs, TabTrigger };

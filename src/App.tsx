@@ -4,7 +4,7 @@ import TodoContainer from './components/todo-container';
 const App: React.FC = () => {
   return (
     <TodoProvider>
-      <div className="flex min-h-screen flex-col overflow-auto bg-background font-sans antialiased">
+      <div className="flex min-h-screen flex-col items-center justify-center overflow-auto bg-background font-sans antialiased">
         <TodoContainer />
       </div>
     </TodoProvider>

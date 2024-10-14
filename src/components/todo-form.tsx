@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTodos } from '@/context/todo-context';
 import { validateText } from '@/lib/utils';
+import Input from './shared/ui/input';
 
 const TodoForm: React.FC = () => {
   const [text, setText] = useState('');
@@ -36,8 +37,8 @@ const TodoForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <input
-        className="w-full border-none p-2 text-xl text-gray-700 outline-none"
+      <Input
+        className="h-8 w-full border-b border-border p-2 text-xl text-body01"
         type="text"
         placeholder="What needs to be done?"
         value={text}

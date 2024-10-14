@@ -16,22 +16,26 @@ const TodoContainer: React.FC = () => {
 
   return (
     <Container>
-      <main className="bg-color05 flex h-full w-full flex-1 flex-col gap-9">
+      <main className="bg-color05 flex h-full w-full flex-1 flex-col shadow-md">
         <TodoForm />
         <TodoList filter={selectedTab} />
-        <Tabs>
-          {Object.values(filterTabs).map((tab) => (
-            <TabTrigger
-              key={tab.label}
-              label={tab.label}
-              isSelected={selectedTab === tab.value}
-              onClick={() => selectTab(tab.value as FilterTabs)}
-            />
-          ))}
-        </Tabs>
-        <Button onClick={clearCompleted}>Clear completed</Button>
-        <div className="mt-4 text-sm text-gray-500">
-          <span>{remainingCount} tasks left</span>
+        <div className="flex items-center justify-between p-2">
+          <div className="text-body02">
+            <span>{remainingCount} tasks left</span>
+          </div>
+          <Tabs>
+            {Object.values(filterTabs).map((tab) => (
+              <TabTrigger
+                key={tab.label}
+                label={tab.label}
+                isSelected={selectedTab === tab.value}
+                onClick={() => selectTab(tab.value as FilterTabs)}
+              />
+            ))}
+          </Tabs>
+          <Button className="text-body02" onClick={clearCompleted}>
+            Clear completed
+          </Button>
         </div>
       </main>
     </Container>

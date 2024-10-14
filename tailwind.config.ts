@@ -49,8 +49,8 @@ const config: Config = {
         success: 'var(--success)',
         accent: 'var(--accent)',
 
-        body01: 'var(--color-01)',
-        body02: 'var(--color-02)',
+        body01: 'var(--body-01)',
+        body02: 'var(--body-02)',
 
         border: 'var(--border)',
       },

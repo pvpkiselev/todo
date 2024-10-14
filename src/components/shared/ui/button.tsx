@@ -1,17 +1,14 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   className?: string;
-  onClick: () => void;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { children, className, onClick } = props;
-
+const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
   return (
-    <button className={cn('mt-4 text-red-500', className)} onClick={onClick}>
+    <button className={cn('p2 font-medium text-body01', className)} {...props}>
       {children}
     </button>
   );
