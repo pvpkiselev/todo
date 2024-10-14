@@ -9,14 +9,12 @@ const config: Config = {
       xs: '320px',
       sm: '391px',
       md: '480px',
-      lg: '768px',
     },
 
     maxWidth: {
       xs: '390px',
       sm: '479px',
       md: '767px',
-      lg: '1200px',
     },
 
     container: {
@@ -32,7 +30,7 @@ const config: Config = {
         xs: '100%',
         sm: '100%',
         md: '100%',
-        lg: '1200px',
+        lg: '767px',
       },
     },
     extend: {

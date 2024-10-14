@@ -8,7 +8,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
   return (
-    <button className={cn('p2 font-medium text-body01', className)} {...props}>
+    <button
+      className={cn('flex items-center justify-center gap-2 font-medium text-body01', className)}
+      {...props}
+    >
       {children}
     </button>
   );

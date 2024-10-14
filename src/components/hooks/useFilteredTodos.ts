@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useTodos } from '@/context/todo-context';
+import { useTodos } from '@/context/todo/todo-context';
 import type { FilterTabs } from '@/models/types';
 
 export const useFilteredTodos = (filter: FilterTabs) => {
@@ -16,12 +16,7 @@ export const useFilteredTodos = (filter: FilterTabs) => {
     }
   }, [todos, filter]);
 
-  const remainingCount = useMemo(() => {
-    return todos.filter((todo) => !todo.completed).length;
-  }, [todos]);
-
   return {
     filteredTodos,
-    remainingCount,
   };
 };

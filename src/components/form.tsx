@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useTodos } from '@/context/todo-context';
+import { useTodosDispatch } from '@/context/todo/todo-context';
 import { validateText } from '@/lib/utils';
 import Input from './shared/ui/input';
+import { addTodo } from '@/context/todo/todo-actions';
 
 const TodoForm: React.FC = () => {
   const [text, setText] = useState('');
   const [error, setError] = useState('');
-  const { addTodo } = useTodos();
+  const { dispatch } = useTodosDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +18,7 @@ const TodoForm: React.FC = () => {
       return;
     }
 
-    addTodo(text.trim());
+    dispatch(addTodo(text.trim()));
     setText('');
     setError('');
   };
@@ -38,7 +39,7 @@ const TodoForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <Input
-        className="h-8 w-full border-b border-border p-2 text-xl text-body01"
+        className="h-8 w-full border-none p-2 text-xl text-body01"
         type="text"
         placeholder="What needs to be done?"
         value={text}

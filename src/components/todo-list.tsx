@@ -1,3 +1,4 @@
+import React from 'react';
 import type { FilterTabs } from '@/models/types';
 import TodoItem from './todo-item';
 import { useFilteredTodos } from './hooks/useFilteredTodos';
@@ -9,13 +10,9 @@ interface TodoListProps {
 const TodoList: React.FC<TodoListProps> = ({ filter }) => {
   const { filteredTodos } = useFilteredTodos(filter);
 
-  return (
-    <div className="flex w-full flex-col">
-      {filteredTodos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
-      ))}
-    </div>
-  );
+  const renderedTodos = filteredTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />);
+
+  return <main className="flex w-full flex-col">{renderedTodos}</main>;
 };
 
 export default TodoList;
