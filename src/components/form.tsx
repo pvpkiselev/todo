@@ -37,7 +37,7 @@ const TodoForm: React.FC = () => {
   }, [error]);
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit} className="w-full" data-testid="todo-form">
       <Input
         className="h-8 w-full border-none p-2 text-xl text-body01"
         type="text"
