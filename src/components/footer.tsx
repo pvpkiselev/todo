@@ -4,6 +4,7 @@ import { Tabs, TabTrigger } from './shared/ui/tabs';
 import TodoCounter from './counter';
 import type { FilterTabs } from '@/models/types';
 import { filterTabs } from '@/models/tabs';
+import { useRemainingCount } from './hooks/useTodosSelector';
 
 interface TodoFooterProps {
   selectedTab: FilterTabs;
@@ -13,6 +14,7 @@ interface TodoFooterProps {
 const TodoFooter: React.FC<TodoFooterProps> = (props) => {
   const { dispatch } = useTodosDispatch();
   const { selectedTab, onSelectTab } = props;
+  const remainingCount = useRemainingCount();
 
   const clearCompleted = () => {
     dispatch({ type: 'CLEAR_COMPLETED' });
@@ -20,7 +22,7 @@ const TodoFooter: React.FC<TodoFooterProps> = (props) => {
 
   return (
     <footer className="flex items-center justify-between p-2">
-      <TodoCounter />
+      <TodoCounter count={remainingCount} />
       <Tabs>
         {Object.values(filterTabs).map((tab) => (
           <TabTrigger

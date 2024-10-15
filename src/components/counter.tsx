@@ -1,11 +1,13 @@
-import { useRemainingCount } from './hooks/useTodosSelector';
+import React from 'react';
 
-const TodoCounter: React.FC = () => {
-  const remainingCount = useRemainingCount();
+interface CounterProps {
+  count: number;
+}
 
+const TodoCounter: React.FC<CounterProps> = ({ count }) => {
   return (
     <div className="text-body02">
-      <span>{remainingCount} tasks left</span>
+      <span>{count} tasks left</span>
     </div>
   );
 };

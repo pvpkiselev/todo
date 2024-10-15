@@ -1,11 +1,10 @@
-import { useMemo } from 'react';
 import { useTodos } from '@/context/todo/todo-context';
 import type { FilterTabs } from '@/models/types';
 
 export const useFilteredTodos = (filter: FilterTabs) => {
   const { todos } = useTodos();
 
-  const filteredTodos = useMemo(() => {
+  const switchedTodos = () => {
     switch (filter) {
       case 'active':
         return todos.filter((todo) => !todo.completed);
@@ -14,7 +13,9 @@ export const useFilteredTodos = (filter: FilterTabs) => {
       default:
         return todos;
     }
-  }, [todos, filter]);
+  };
+
+  const filteredTodos = switchedTodos();
 
   return {
     filteredTodos,
